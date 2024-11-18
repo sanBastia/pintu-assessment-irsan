@@ -1,4 +1,5 @@
 import CategoryBadges from "@/components/CategoryBadges";
+import SearchInput from "@/components/SearchInput";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
                           </h1>
                       </div>
                       <div className='flex-end items-center'>
-                      {/* <SearchInput /> */}
+                      <SearchInput />
                   </div>
                       </nav>
                 </header>
