@@ -13,3 +13,7 @@
 ## library
 
 [x] [shadcn](https://ui.shadcn.com/)
+
+## others
+
+search icon (https://v0.dev/t/trhShU46aiC)
