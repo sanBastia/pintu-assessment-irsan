@@ -1,8 +1,5 @@
-
 import CategoryBadges from "@/components/CategoryBadges";
 import SearchInput from "@/components/SearchInput";
-
-
 
 export default function Home() {
   return (
@@ -21,7 +18,7 @@ export default function Home() {
                 </header>
 
                   <div className="w-full">
-                
+
                       <div className="flex justify-around px-10 2xl:px-36">
                         <CategoryBadges />
                        </div>
