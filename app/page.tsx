@@ -1,5 +1,5 @@
 export default function Home() {
   return (
- <div>Hello Pintu</div>
+ <div>Harga Crypto dalam rupiah hari ini</div>
   );
 }
