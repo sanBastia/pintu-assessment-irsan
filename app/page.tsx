@@ -1,5 +1,6 @@
 import CategoryBadges from "@/components/CategoryBadges";
 import SearchInput from "@/components/SearchInput";
+import Tables from "@/components/Tables";
 
 export default function Home() {
   return (
@@ -23,6 +24,10 @@ export default function Home() {
                         <CategoryBadges />
                        </div>
                   </div>
+                  <div>
+                   <Tables />
+                  </div>
               </div>
+
   );
 }
