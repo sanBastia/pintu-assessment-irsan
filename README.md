@@ -17,7 +17,7 @@
 
 
 
-# problems
+## problems
 
 - [x] CORS Error 
 solved by creating a single api, kinda inject the Access-Control-Allow-Origin with asterick

@@ -9,7 +9,7 @@ export default function Tables() {
  
   const { data: dataPricechange, error: errorPriceChange, isLoading: isLoadingPriceChange } = useGetPriceChanges()
   const { data: dataSupportedCurrencies, error: errorSupportedCurrencies, isLoading: isLoadingSupportedCurrencies } = useGetSupportedCurrencies()
-  if (errorPriceChange) return errorPriceChange.message
+  if (errorPriceChange && errorSupportedCurrencies) return errorPriceChange.message 
 
   if(dataPricechange && dataSupportedCurrencies){
     
@@ -43,8 +43,8 @@ export default function Tables() {
       return (
       <div className='flex gap-2 items-center'>
         
-        { isLoadingPriceChange && 'loading...'}
-        {!isLoadingPriceChange && dataPricechange.payload.map((data: any, index: any) => (
+        { isLoadingPriceChange || isLoadingSupportedCurrencies && 'loading...'}
+        {!isLoadingPriceChange  && !isLoadingSupportedCurrencies && dataPricechange.payload.map((data: any, index: any) => (
         <h1 className='font-bold text-lg' key={index}>{data.pair}</h1>
       ))}
       </div>
