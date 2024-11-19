@@ -2,7 +2,9 @@ import CategoryBadges from "@/components/CategoryBadges";
 import SearchInput from "@/components/SearchInput";
 import Tables from "@/components/Tables";
 
-export default function Home() {
+
+export default async function Home() {
+
   return (
           <div>
               <header className="w-full">
@@ -25,7 +27,7 @@ export default function Home() {
                        </div>
                   </div>
                   <div>
-                   <Tables />
+                   <Tables /> 
                   </div>
               </div>
 

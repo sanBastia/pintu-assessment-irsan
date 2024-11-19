@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { useGetData } from '@/data/get-data'
+import { useGetPriceChanges } from '@/data/get-data'
 import React from 'react'
 
-
 export default function Tables() {
-  const { data, error, isLoading } = useGetData()
+  const { data, error, isLoading } = useGetPriceChanges()
   if (error) return error.message
- 
   if (data)
     return (
-      <div>
+      <div className='flex gap-2 items-center'>
         {isLoading &&  'loading...'}
-        <code>{data}</code>
+       {data.payload.map((data: any, index: any) => (
+        <h1 className='font-bold text-lg' key={index}>{data.day}</h1>
+      ))}
       </div>
     )
 }
