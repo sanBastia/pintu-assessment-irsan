@@ -1,14 +1,20 @@
 import { useQuery } from "@tanstack/react-query"
 
-export function useGetData() {
+export function useGetPriceChanges() {
   return useQuery({
     queryFn: async () => {
-      const res = await fetch(
-        "https://api.pintu.co.id/v2/trade/price-changes"
-      );
-    const data = await res.json();
-    return data
+      const res = (await fetch("/api/price-changes")).json();
+    return res
     },
     queryKey: ["fetchPintuApiPriceChanges"],
+  })
+}
+export function useGetSupportedCurrencies() {
+  return useQuery({
+    queryFn: async () => {
+      const res = (await fetch("/api/supported-currencies")).json();
+    return res
+    },
+    queryKey: ["fetchPintuApiSupportedCurrencies"],
   })
 }
