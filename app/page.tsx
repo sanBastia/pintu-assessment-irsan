@@ -25,11 +25,7 @@ export default async function Home() {
                         <CategoryBadges />
                        </div>
                   </div>
-                  <div className="w-full">
-                      <div className="flex justify-around px-10 2xl:px-36">
                          <Tables />
-                      </div>
-                  </div>
               </div>
 
   );
