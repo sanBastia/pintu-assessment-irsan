@@ -3,10 +3,11 @@
 
 import { useGetPriceChanges, useGetSupportedCurrencies } from '@/data/get-data'
 import React from 'react'
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
+import { CurrrencyFormat, RedGreenIndicator } from '@/lib/utils'
 
 export default function Tables() {
   
- 
   const { data: dataPricechange, error: errorPriceChange, isLoading: isLoadingPriceChange } = useGetPriceChanges()
   const { data: dataSupportedCurrencies, error: errorSupportedCurrencies, isLoading: isLoadingSupportedCurrencies } = useGetSupportedCurrencies()
   if (errorPriceChange && errorSupportedCurrencies) return errorPriceChange.message 
@@ -38,16 +39,37 @@ export default function Tables() {
         }
 });
     console.log(combinedArray, "CA");
-
+  
     
-      return (
-      <div className='flex gap-2 items-center'>
-        
-        { isLoadingPriceChange || isLoadingSupportedCurrencies && 'loading...'}
-        {!isLoadingPriceChange  && !isLoadingSupportedCurrencies && dataPricechange.payload.map((data: any, index: any) => (
-        <h1 className='font-bold text-lg' key={index}>{data.pair}</h1>
-      ))}
-      </div>
+    return (
+          <Table>
+            <TableCaption>A list of your recent invoices.</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px]">Crypto</TableHead>
+                <TableHead></TableHead>
+                <TableHead>Harga</TableHead>
+                <TableHead>24 jam</TableHead>
+                <TableHead>1 MGG</TableHead>
+                <TableHead>1 BLN</TableHead>
+                <TableHead>1 THN</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              { combinedArray.map((curr:{name: string, currencySymbol: string, latestPrice: string, day: string, week:string,month:string, year: string}, index: any) => (
+                <TableRow key={index}>
+                  <TableCell className="font-medium">{curr.name}</TableCell>
+                  <TableCell>{curr.currencySymbol}</TableCell>
+                  <TableCell>{CurrrencyFormat(curr.latestPrice)}</TableCell>
+    
+                  <TableCell className={RedGreenIndicator(curr.day)}>{curr.day+"%"}</TableCell>
+                  <TableCell className={RedGreenIndicator(curr.week)}>{curr.week+"%"}</TableCell>
+                  <TableCell className={RedGreenIndicator(curr.week)}>{curr.month+"%"}</TableCell>
+                  <TableCell className={RedGreenIndicator(curr.week)}>{curr.year+"%"}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
     )
   }
 }
