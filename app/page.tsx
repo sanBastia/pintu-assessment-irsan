@@ -21,13 +21,14 @@ export default async function Home() {
                 </header>
 
                   <div className="w-full">
-
                       <div className="flex justify-around px-10 2xl:px-36">
                         <CategoryBadges />
                        </div>
                   </div>
-                  <div>
-                   <Tables /> 
+                  <div className="w-full">
+                      <div className="flex justify-around px-10 2xl:px-36">
+                         <Tables />
+                      </div>
                   </div>
               </div>
 
