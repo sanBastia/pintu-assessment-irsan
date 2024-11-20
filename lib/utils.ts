@@ -11,5 +11,5 @@ export function CurrrencyFormat(latestPrice: string) {
 }
 
 export function RedGreenIndicator(persentage: string) {
- return `${persentage.charAt(0) === '-' ? 'text-red-600': "text-emerald-600"}`
+ return `${persentage.charAt(0) === '-' ? 'text-red-600': 'text-emerald-600' }`
 }

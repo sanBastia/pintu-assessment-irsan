@@ -5,12 +5,25 @@ import { useGetPriceChanges, useGetSupportedCurrencies } from '@/data/get-data'
 import React from 'react'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { CurrrencyFormat, RedGreenIndicator } from '@/lib/utils'
+import SearchInput from './SearchInput'
+import { LoadingSpinner } from './LoadingSpinner'
 
 export default function Tables() {
   
   const { data: dataPricechange, error: errorPriceChange, isLoading: isLoadingPriceChange } = useGetPriceChanges()
   const { data: dataSupportedCurrencies, error: errorSupportedCurrencies, isLoading: isLoadingSupportedCurrencies } = useGetSupportedCurrencies()
+
   if (errorPriceChange && errorSupportedCurrencies) return errorPriceChange.message 
+
+  if(isLoadingPriceChange || isLoadingSupportedCurrencies ){
+    return (
+      <div className="w-full">
+        <div className='flex px-10 2xl:px-36 my-4'>
+        <LoadingSpinner />
+      </div>
+      </div>
+    )
+  } 
 
   if(dataPricechange && dataSupportedCurrencies){
     
@@ -42,6 +55,11 @@ export default function Tables() {
   
     
     return (
+      <div className="w-full">
+      <div className='flex px-10 2xl:px-36 my-4'>
+        <SearchInput />
+      </div>
+      <div className="flex px-10 2xl:px-36">
           <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
@@ -64,12 +82,16 @@ export default function Tables() {
     
                   <TableCell className={RedGreenIndicator(curr.day)}>{curr.day+"%"}</TableCell>
                   <TableCell className={RedGreenIndicator(curr.week)}>{curr.week+"%"}</TableCell>
-                  <TableCell className={RedGreenIndicator(curr.week)}>{curr.month+"%"}</TableCell>
-                  <TableCell className={RedGreenIndicator(curr.week)}>{curr.year+"%"}</TableCell>
+                  <TableCell className={RedGreenIndicator(curr.month)}>{curr.month+"%"}</TableCell>
+                  <TableCell className={RedGreenIndicator(curr.year)}>{curr.year+"%"}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
+          </div>
+          </div> 
     )
   }
 }
+
+
