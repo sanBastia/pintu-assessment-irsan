@@ -24,6 +24,11 @@ solved by creating a single api, kinda inject the Access-Control-Allow-Origin wi
 
 https://www.youtube.com/watch?v=y4h2FArCMN0
 
+- [x] 2 different API with 2 response
+solved by combining a response from the two different API, find something that could tie / match both, and i found that "pair" is the key, so by matching currencyGroup with split '/' "pair" , than we could combine both API response into one single data that we can use
+
+
+
 
 ## references
 
