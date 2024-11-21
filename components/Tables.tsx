@@ -3,10 +3,11 @@
 
 import { useGetPriceChanges, useGetSupportedCurrencies } from '@/data/get-data'
 import React from 'react'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { CurrrencyFormat, RedGreenIndicator } from '@/lib/utils'
 import SearchInput from './SearchInput'
 import { LoadingSpinner } from './LoadingSpinner'
+import Image from 'next/image'
 
 export default function Tables() {
   
@@ -61,7 +62,6 @@ export default function Tables() {
       </div>
       <div className="flex px-10 2xl:px-36">
           <Table>
-            <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[100px]">Crypto</TableHead>
@@ -74,16 +74,34 @@ export default function Tables() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              { combinedArray.map((curr:{name: string, currencySymbol: string, latestPrice: string, day: string, week:string,month:string, year: string}, index: any) => (
+              { combinedArray.map((curr: {
+                name: string, 
+                currencySymbol: string, 
+                latestPrice: string, 
+                day: string, 
+                week:string,
+                month:string, 
+                year: string,
+                logo: string
+              }, index: any) => (
                 <TableRow key={index}>
-                  <TableCell className="font-medium">{curr.name}</TableCell>
+                  <TableCell className="font-medium">
+                    <Image 
+                    src={curr.logo}
+                    width={10}
+                    height={10}
+                    alt='logocurrency'
+                    className=''
+                    />
+                    {curr.name}
+                  </TableCell>
                   <TableCell>{curr.currencySymbol}</TableCell>
                   <TableCell>{CurrrencyFormat(curr.latestPrice)}</TableCell>
     
-                  <TableCell className={RedGreenIndicator(curr.day)}>{curr.day+"%"}</TableCell>
-                  <TableCell className={RedGreenIndicator(curr.week)}>{curr.week+"%"}</TableCell>
-                  <TableCell className={RedGreenIndicator(curr.month)}>{curr.month+"%"}</TableCell>
-                  <TableCell className={RedGreenIndicator(curr.year)}>{curr.year+"%"}</TableCell>
+                  <TableCell className={`${curr.day.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.day+"%"} </TableCell>
+                  <TableCell className={`${curr.week.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.week+"%"} </TableCell>
+                  <TableCell className={`${curr.month.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.month+"%"}</TableCell>
+                  <TableCell className={`${curr.year.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.year+"%"}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
