@@ -50,17 +50,28 @@ const Categories = [{
     icon: <FaBalanceScale size={20} />
   },]
 
-const CategoryBadges = () => Categories.map((category,index) => {
-    return (
-      <div className='flex-shrink-0' key={index}>
-      <Badge variant="outline" className="p-3 rounded-2xl" >
-      {category.icon}
-      <p className="font-bold text-sm ml-2">{category.name}</p>
-      </Badge>
-      </div>
-    )
-       
-  })
+const CategoryBadges = () => {
+
+  return (
+    <div className="w-full">
+      <div className="flex overflow-x-auto space-x-8 justify-around px-10 2xl:px-36">
+            {
+              Categories.map((category,index) => {
+                return (
+                  <div className='flex-shrink-0' key={index}>
+                  <Badge variant="outline" className="p-3 rounded-2xl" >
+                  {category.icon}
+                  <p className="font-bold text-sm ml-2">{category.name}</p>
+                  </Badge>
+                  </div>
+                )
+                   
+              })
+            }
+        </div>
+    </div>
+  )
+} 
 
 
 export default CategoryBadges

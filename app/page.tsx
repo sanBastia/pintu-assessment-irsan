@@ -15,12 +15,9 @@ export default async function Home() {
                       </div>
                       </div>
                 </header>
-                  <div className="w-full">
-                      <div className="flex overflow-x-auto space-x-8 justify-around px-10 2xl:px-36">
-                        <CategoryBadges />
-                       </div>
-                  </div>
-                     <Tables />
+          
+                        <CategoryBadges /> 
+                        <Tables />
               </main>
 
   );
