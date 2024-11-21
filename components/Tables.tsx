@@ -9,6 +9,7 @@ import SearchInput from './SearchInput'
 import { LoadingSpinner } from './LoadingSpinner'
 import CoinLogo from './CoinLogo'
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
+import TableCellPersentage from './TableCellPersentage'
 
 export default function Tables() {
   
@@ -125,10 +126,11 @@ export default function Tables() {
                    
                   </TableCell>
                   <TableCell>{CurrrencyFormat(curr.latestPrice)}</TableCell>
-                  <TableCell className={`${curr.day.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.day+"%"} </TableCell>
-                  <TableCell className={`${curr.week.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.week+"%"} </TableCell>
-                  <TableCell className={`${curr.month.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.month+"%"}</TableCell>
-                  <TableCell className={`${curr.year.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.year+"%"}</TableCell>
+                  <TableCellPersentage persentage={curr.day} />
+                  <TableCellPersentage persentage={curr.week} />
+                  <TableCellPersentage persentage={curr.month} />
+                  <TableCellPersentage persentage={curr.year} />
+                  
                 </TableRow>
               ))
              }
@@ -140,3 +142,9 @@ export default function Tables() {
     )
   }
 }
+
+
+{/* <TableCell className={`${curr.day.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{RedGreenIndicator(curr.day)+"%"} </TableCell>
+                  <TableCell className={`${curr.week.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.week+"%"} </TableCell>
+                  <TableCell className={`${curr.month.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.month+"%"}</TableCell>
+                  <TableCell className={`${curr.year.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.year+"%"}</TableCell> */}

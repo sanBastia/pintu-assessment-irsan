@@ -3,13 +3,12 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function CurrrencyFormat(latestPrice: string) {
-  return Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(Number(latestPrice))
-}
+export const CurrrencyFormat = (latestPrice: string) => Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(Number(latestPrice))
 
 export const combineCurrencyAndPriceChangeData = (
   supportedCurrencies: any ,
@@ -29,5 +28,7 @@ export const combineCurrencyAndPriceChangeData = (
 
   return combinedArray;
 }
+
+export const RedGreenIndicator = ( percentage: string ) => percentage.charAt(0) === '-' ? percentage.replace('-','') : percentage
 
 // export const RedGreenIndicator = (persentage: string) => clsx(persentage.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600');
