@@ -33,16 +33,11 @@ export default function Tables() {
   } 
 
   if(dataPricechange && dataSupportedCurrencies){
-      //refactor this
+      
         const supportedCurrencies = dataSupportedCurrencies.payload
         const priceChanges = dataPricechange.payload
         const combined = combineCurrencyAndPriceChangeData(supportedCurrencies, priceChanges);
-
-        // const filteredData = combined.filter(coin =>
-        //   coin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        //   coin.currencySymbol.toLowerCase().includes(searchTerm.toLowerCase())
-        // )
-        
+  
         // Function to handle sorting
         const handleSort = (key: string) => {
           if (sortBy === key) {
