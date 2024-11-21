@@ -3,6 +3,10 @@
 
 try my best to replicate pintu.co.id as part of my assessment for Front End Engineer, wish me luck !
 
+## Live Demo
+
+[Pintu Assessment irsan](https://pintu-assessment-irsan.vercel.app/)
+
 ## Installing / Getting started
 
 A quick introduction of the installation
@@ -48,7 +52,7 @@ solved by creating a single api, kinda inject the Access-Control-Allow-Origin wi
 - [x] 2 different API with 2 response
 solved by combining a response from the two different API, find something that could tie / match both, and i found that "pair" is the key, so by matching currencyGroup with split '/' "pair" , than we could combine both API response into one single data that we can use
 
-- [] fill the SVG color
+- [ ] fill the SVG color
 color svg not filled
 
 - [x] refactor inline style for redgreenindicator
