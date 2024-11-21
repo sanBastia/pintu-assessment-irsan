@@ -38,29 +38,36 @@ i have to admit that i've been done a lot of research, and try to look for other
   - developed by ed has shown me an awesome tutorial, so i dig a little bit more too find out how to fetch only one time
 - Sort and filter: https://medium.com/@Vaibhavihole31/building-search-filter-and-sorting-functionality-on-a-table-in-react-d3d38a73668a
   - i need to find a simple way to sort and filter (search) to do this project so i can tell or desrcibe to you better how this work
+- CORS error: https://www.youtube.com/watch?v=y4h2FArCMN0
   
 
 ## problems
 
 things i've been encountered during the development process, and i kinda solved some of them, but not all of them
 
+<dl>
+    <dt>CORS Error</dt>
+    <dd> if i access the api directly from the browser. it worked ! but when i try to access it from my app it cause error and broke. if i had the access to the API ( BACKEND TEAM) i could just say "hei could you please allow all",thanks, but i was not. so luckyly i'm use next js.  solved by creating a single api, kinda inject the Access-Control-Allow-Origin with asterick
+    </dd>
+</dl>
 
-- [x] CORS Error (https://www.youtube.com/watch?v=y4h2FArCMN0) 
-solved by creating a single api, kinda inject the Access-Control-Allow-Origin with asterick
+<dl>
+    <dt>2 different API with 2 response</dt>
+    <dd>after look at the assesment, and comparing to the pintu.co.id/market, i realise that both response API not really straight forward, so i had to connect the dot, find a way to somehow combine , merge, pick a few data for the assesment. and i found it, pair matching with currencyGroup. solved it by modified response from both API and make it happen
+    </dd>
+</dl>
 
+<dl>
+    <dt>logo svg color</dt>
+    <dd>this is one of those things that i spend too much time trying to solved it, almost broke the app, so the API has give a nice url logo with .svg, it worked beautifully thanks to dev team from PINTU, but i was stupid enough just display it, not be able to color it, cause the response also give me a 'color' so i could just 'fill'. so this one is not solved
+    </dd>
+</dl>
 
-- [x] 2 different API with 2 response
-solved by combining a response from the two different API, find something that could tie / match both, and i found that "pair" is the key, so by matching currencyGroup with split '/' "pair" , than we could combine both API response into one single data that we can use
-
-- [ ] fill the SVG color
-color svg not filled
-
-- [x] refactor inline style for redgreenindicator
-need to find a way to refactor css for day,week,month,year, at this moment inline style worked
-
-- [x] refactor merging two RESPONSE API for one
-need to find a way to refactor two response api for one single data, right now there is a longline of code in table component
-
+<dl>
+    <dt>Red And Green indicator</dt>
+    <dd>by understanding KISS , which KEEP IT SIMPLE AND STUPID, i managed to make day, week, month, year had a nice red color and green color, also with arrow up and arrow down. but somehow i need to refactor it. cause it look ugly. just repeat those code 4 times. then i solved it by create a component. and voilaa ! its solved
+    </dd>
+</dl>
 
 ## library
 
