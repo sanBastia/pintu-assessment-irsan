@@ -11,7 +11,7 @@ const TableCellPersentage = ({persentage}: {persentage: string}) => {
     <TableCell>
         <div className='flex'>
                 {isMinus ? <FaSortDown size={20} fill='red' />: <FaSortUp className='mt-1' size={20} fill='green' />}
-                <p className={`font-bold text-md ${isMinus ? 'text-red-600' : 'text-emerald-600'}`} >
+                <p className={`font-bold text-lg ${isMinus ? 'text-red-600' : 'text-emerald-600'}`} >
                 {RedGreenIndicator(persentage)+"%"} 
                 </p>
         </div>
