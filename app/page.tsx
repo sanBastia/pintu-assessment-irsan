@@ -1,5 +1,7 @@
 import CategoryBadges from "@/components/CategoryBadges";
 import Tables from "@/components/Tables";
+import { Link } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 
 
 export default async function Home() {
@@ -13,7 +15,13 @@ export default async function Home() {
                           Harga Crypto dalam Rupiah hari ini
                           </h1>
                       </div>
+                      <div className="flex-end items-center">
+                      <a href="https://github.com/sanBastia/pintu-assessment-irsan" target="_BLANK"> 
+                        <FaGithub size={28} />
+                        </a>
                       </div>
+                      </div>
+                      
                 </header>
           
                         <CategoryBadges /> 
