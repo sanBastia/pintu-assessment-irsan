@@ -17,8 +17,8 @@ export default function Tables() {
   const { data: dataSupportedCurrencies, error: errorSupportedCurrencies, isLoading: isLoadingSupportedCurrencies } = useGetSupportedCurrencies()
 
   const [searchTerm, setSearchTerm] = useState('')
-  const [sortBy, setSortBy] = useState('latestPrice')
-  const [sortOrder,setSortOrder] = useState('low')
+  const [sortBy, setSortBy] = useState('')
+  const [sortOrder,setSortOrder] = useState('high')
 
  
   if (errorPriceChange && errorSupportedCurrencies) return errorPriceChange.message 
@@ -38,28 +38,30 @@ export default function Tables() {
         const supportedCurrencies = dataSupportedCurrencies.payload
         const priceChanges = dataPricechange.payload
         const combined = combineCurrencyAndPriceChangeData(supportedCurrencies, priceChanges);
-  
-        // Function to handle sorting
-        const handleSort = (key: string) => {
-          if (sortBy === key) {
-            setSortOrder(sortOrder === "high" ? "low" : "high");
-          } else {
-            setSortBy(key);
-            setSortOrder("low");
-          }
-        };
 
-        // Sorting logic based on sortBy and sortOrder
-        const sortedData = [...combined].sort((a, b) => {
-          const aValue = parseInt(a[sortBy]);
-          const bValue = parseInt(b[sortBy]);
-          if (sortOrder === "high") {
-            return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-          } else {
-            return bValue < aValue ? -1 : bValue > aValue ? 1 : 0;
-          }
-        });
-          
+          // Function to handle sorting
+          const handleSort = (key: string) => {
+        
+            if (sortBy === key) {
+              setSortOrder(sortOrder === "high" ? "low" : "high");
+            } else {
+              setSortBy(key);
+              setSortOrder("high");
+            }
+          };
+  
+          // Sorting logic based on sortBy and sortOrder
+          const sortedData = [...combined].sort((a, b) => {
+            const aValue = parseInt(a[sortBy]);
+            const bValue = parseInt(b[sortBy]);
+
+            if (sortOrder === "high") {
+              return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+            } else {
+              return bValue < aValue ? -1 : bValue > aValue ? 1 : 0;
+            }
+          });
+            
                 
     return (
       <div className="w-full">
@@ -73,27 +75,27 @@ export default function Tables() {
                 <TableHead colSpan={2}>Crypto</TableHead>
                 <TableHead  onClick={()=> handleSort('latestPrice')}>
                   <div className="flex gap-2 mt-4">
-                    Harga {sortBy === "latestPrice" && (sortOrder === "high" ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}  
+                    Harga {sortOrder === "high" && sortBy === 'latestPrice'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />}  
                     </div>
                 </TableHead>
                 <TableHead onClick={()=> handleSort('day')}>
                   <div className="flex gap-2 mt-4">
-                   24 JAM {sortBy === "day" && (sortOrder === "high" ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
+                   24 JAM {(sortOrder === "high" && sortBy === 'day'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
                   </div>
                   </TableHead>
                 <TableHead onClick={()=> handleSort('week')}>
                    <div className="flex gap-2 mt-4"> 
-                      1 MGG {sortBy === "week" && (sortOrder === "high" ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
+                      1 MGG {(sortOrder === "high" && sortBy === 'week'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
                     </div>
                   </TableHead>
                 <TableHead onClick={()=> handleSort('month')}>
                    <div className="flex gap-2 mt-4"> 
-                     1 BLN {sortBy === "month" && (sortOrder === "high" ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
+                     1 BLN {(sortOrder === "high" && sortBy === 'month' ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
                    </div>
                   </TableHead>
                 <TableHead onClick={()=> handleSort('year')}>
                   <div className="flex gap-2 mt-4">
-                    1 THN {sortBy === "year" && (sortOrder === "high" ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
+                    1 THN {(sortOrder === "high" && sortBy === 'year'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
                   </div>
                   </TableHead>
               </TableRow>
@@ -125,7 +127,11 @@ export default function Tables() {
                     </div>
                    
                   </TableCell>
-                  <TableCell>{CurrrencyFormat(curr.latestPrice)}</TableCell>
+                  <TableCell>
+                    <h1 className='text-lg font-bold'>
+                    {CurrrencyFormat(curr.latestPrice)}
+                    </h1>
+                  </TableCell>
                   <TableCellPersentage persentage={curr.day} />
                   <TableCellPersentage persentage={curr.week} />
                   <TableCellPersentage persentage={curr.month} />
