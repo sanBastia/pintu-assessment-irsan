@@ -18,9 +18,10 @@ import {
 import SearchInput from "./SearchInput";
 import { LoadingSpinner } from "./LoadingSpinner";
 import CoinLogo from "./CoinLogo";
-// import { FaChevronUp, FaChevronDown } from "react-icons/fa";
+
 import TableCellPersentage from "./TableCellPersentage";
 import TableHeaderSort from "./TableHeaderSort";
+import ErrorComponent from "./ErrorComponent";
 
 export default function Tables() {
   const {
@@ -39,7 +40,9 @@ export default function Tables() {
   const [sortOrder, setSortOrder] = useState("high");
 
   if (errorPriceChange && errorSupportedCurrencies)
-    return errorPriceChange.message;
+    return (
+     <ErrorComponent error={errorPriceChange.message} />
+    ) ;
 
   if (isLoadingPriceChange || isLoadingSupportedCurrencies) {
     return (
@@ -59,17 +62,6 @@ export default function Tables() {
       priceChanges
     );
 
-    // Function to handle sorting
-    // const handleSort = (key: string) => {
-
-    //   if (sortBy === key) {
-    //     setSortOrder(sortOrder === "high" ? "low" : "high");
-    //   } else {
-    //     setSortBy(key);
-    //     setSortOrder("high");
-    //   }
-    // };
-
     // Sorting logic based on sortBy and sortOrder
     const sortedData = [...combined].sort((a, b) => {
       const aValue = parseInt(a[sortBy]);
@@ -86,7 +78,6 @@ export default function Tables() {
       <div className="w-full">
         <div className="flex px-10 2xl:px-36 my-4">
           <SearchInput searchTerm={searchTerm} handleSearch={setSearchTerm} />
-          <button>X</button>
         </div>
         <div className="flex px-10 2xl:px-36">
           <Table>
@@ -133,31 +124,6 @@ export default function Tables() {
                   setSortOrder={setSortOrder}
                   setSortBy={setSortBy}
                 />
-                {/* <TableHead  onClick={()=> handleSort('latestPrice')}>
-                  <div className="flex gap-2 mt-4">
-                    Harga {sortOrder === "high" && sortBy === 'latestPrice'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />}  
-                    </div>
-                </TableHead>
-                <TableHead onClick={()=> handleSort('day')}>
-                  <div className="flex gap-2 mt-4">
-                   24 JAM {(sortOrder === "high" && sortBy === 'day'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
-                  </div>
-                  </TableHead>
-                <TableHead onClick={()=> handleSort('week')}>
-                   <div className="flex gap-2 mt-4"> 
-                      1 MGG {(sortOrder === "high" && sortBy === 'week'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
-                    </div>
-                  </TableHead>
-                <TableHead onClick={()=> handleSort('month')}>
-                   <div className="flex gap-2 mt-4"> 
-                     1 BLN {(sortOrder === "high" && sortBy === 'month' ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
-                   </div>
-                  </TableHead>
-                <TableHead onClick={()=> handleSort('year')}>
-                  <div className="flex gap-2 mt-4">
-                    1 THN {(sortOrder === "high" && sortBy === 'year'  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />)}
-                  </div>
-                  </TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
