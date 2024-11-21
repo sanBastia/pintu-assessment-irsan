@@ -16,7 +16,7 @@ export default async function Home() {
                       </div>
                 </header>
                   <div className="w-full">
-                      <div className="flex justify-around px-10 2xl:px-36">
+                      <div className="flex overflow-x-auto space-x-8 justify-around px-10 2xl:px-36">
                         <CategoryBadges />
                        </div>
                   </div>

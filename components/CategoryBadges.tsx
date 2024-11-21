@@ -52,10 +52,12 @@ const Categories = [{
 
 const CategoryBadges = () => Categories.map((category,index) => {
     return (
-      <Badge variant="outline" className="p-3 rounded-2xl" key={index}>
+      <div className='flex-shrink-0' key={index}>
+      <Badge variant="outline" className="p-3 rounded-2xl" >
       {category.icon}
       <p className="font-bold text-sm ml-2">{category.name}</p>
       </Badge>
+      </div>
     )
        
   })
