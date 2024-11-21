@@ -67,7 +67,7 @@ export default function Tables() {
                 <TableHead className="w-[100px]">Crypto</TableHead>
                 <TableHead></TableHead>
                 <TableHead>Harga</TableHead>
-                <TableHead>24 jam</TableHead>
+                <TableHead>24 JAM</TableHead>
                 <TableHead>1 MGG</TableHead>
                 <TableHead>1 BLN</TableHead>
                 <TableHead>1 THN</TableHead>
