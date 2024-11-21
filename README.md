@@ -28,8 +28,6 @@ https://www.youtube.com/watch?v=y4h2FArCMN0
 solved by combining a response from the two different API, find something that could tie / match both, and i found that "pair" is the key, so by matching currencyGroup with split '/' "pair" , than we could combine both API response into one single data that we can use
 
 
-
-
 ## references
 
 // inspiration for react query
@@ -40,3 +38,6 @@ dicoding - https://www.dicoding.com/blog/dengan-react-query-data-fetching-tidak-
 
 // fetch only one time
 https://stackoverflow.com/questions/71282427/how-to-fetch-user-details-only-once
+
+// sort filter 
+https://medium.com/@Vaibhavihole31/building-search-filter-and-sorting-functionality-on-a-table-in-react-d3d38a73668a
