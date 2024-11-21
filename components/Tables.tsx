@@ -4,10 +4,10 @@
 import { useGetPriceChanges, useGetSupportedCurrencies } from '@/data/get-data'
 import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
-import { CurrrencyFormat, RedGreenIndicator } from '@/lib/utils'
+import { combineCurrencyAndPriceChangeData, CurrrencyFormat } from '@/lib/utils'
 import SearchInput from './SearchInput'
 import { LoadingSpinner } from './LoadingSpinner'
-import Image from 'next/image'
+import CoinLogo from './CoinLogo'
 
 export default function Tables() {
   
@@ -27,34 +27,12 @@ export default function Tables() {
   } 
 
   if(dataPricechange && dataSupportedCurrencies){
-    
-    const SupportedCurrencies = dataSupportedCurrencies.payload.map((curr: {
-      currencyGroup: string; logo: string; currencySymbol: string; color: string; name: string 
-    }) => ({
-          currencySymbol: curr.currencySymbol,
-          currencyGroup: curr.currencyGroup,
-          color: curr.color,
-          name: curr.name,
-          logo: curr.logo,
-    })) 
-    const PriceChange = dataPricechange.payload.map((price: any) => (price))  
-
-  
-    const combinedArray: any[] = [];
-
-    SupportedCurrencies.forEach((curr: { currencyGroup: string }) => {
-        const matchingPair = PriceChange.find((price: { pair: string }) => curr.currencyGroup.toLowerCase() === price.pair.split('/')[0]); // Assuming 'pair' has currencyGroup in first part
-
-        if (matchingPair) {
-          combinedArray.push({
-            ...curr,
-            ...matchingPair
-          });
-        }
-});
-    console.log(combinedArray, "CA");
-  
-    
+      //refactor this
+        const supportedCurrencies = dataSupportedCurrencies.payload
+        const priceChanges = dataPricechange.payload
+        const combined = combineCurrencyAndPriceChangeData(supportedCurrencies, priceChanges);
+          
+                
     return (
       <div className="w-full">
       <div className='flex px-10 2xl:px-36 my-4'>
@@ -64,8 +42,7 @@ export default function Tables() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]">Crypto</TableHead>
-                <TableHead></TableHead>
+                <TableHead colSpan={2}>Crypto</TableHead>
                 <TableHead>Harga</TableHead>
                 <TableHead>24 JAM</TableHead>
                 <TableHead>1 MGG</TableHead>
@@ -74,10 +51,11 @@ export default function Tables() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              { combinedArray.map((curr: {
+              { combined.map((curr: {
                 name: string, 
                 currencySymbol: string, 
                 latestPrice: string, 
+                color:string,
                 day: string, 
                 week:string,
                 month:string, 
@@ -85,19 +63,17 @@ export default function Tables() {
                 logo: string
               }, index: any) => (
                 <TableRow key={index}>
-                  <TableCell className="font-medium">
-                    <Image 
-                    src={curr.logo}
-                    width={10}
-                    height={10}
-                    alt='logocurrency'
-                    className=''
-                    />
-                    {curr.name}
+                  <TableCell className="font-medium" colSpan={2}>
+                    <div className='flex gap-6'>
+                   <CoinLogo url={curr.logo} color={curr.color} />
+                    <div className='flex-col'>
+                    <h1 className='text-lg font-bold'>{curr.name}</h1>
+                    <span className='text-sm text-gray-700'>{curr.currencySymbol}</span>
+                    </div> 
+                    </div>
+                   
                   </TableCell>
-                  <TableCell>{curr.currencySymbol}</TableCell>
                   <TableCell>{CurrrencyFormat(curr.latestPrice)}</TableCell>
-    
                   <TableCell className={`${curr.day.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.day+"%"} </TableCell>
                   <TableCell className={`${curr.week.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.week+"%"} </TableCell>
                   <TableCell className={`${curr.month.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600'}`}>{curr.month+"%"}</TableCell>
