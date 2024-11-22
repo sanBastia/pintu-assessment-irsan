@@ -31,7 +31,7 @@ const TableHeaderSort = ({
         };
   return (
         <TableHead onClick={()=> handleSort(title)}>
-                <div className="flex gap-2 mt-4">
+                <div className="flex gap-2 my-4">
                 {displayTitle} {sortOrder === "high" && sortBy === title  ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />}  
                 </div>
         </TableHead>
