@@ -29,6 +29,6 @@ export const combineCurrencyAndPriceChangeData = (
   return combinedArray;
 }
 
-export const RedGreenIndicator = ( percentage: string ) => percentage.charAt(0) === '-' ? percentage.replace('-','') : percentage
+export const RedGreenIndicator = ( percentage: string ) => percentage.charAt(0) === '-' ? Intl.NumberFormat('id-ID').format(Number(percentage.replace('-',''))) : Intl.NumberFormat('id-ID').format(Number(percentage))
 
 // export const RedGreenIndicator = (persentage: string) => clsx(persentage.charAt(0) === '-' ? 'text-red-600' : 'text-emerald-600');
