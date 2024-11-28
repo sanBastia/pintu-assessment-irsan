@@ -6,22 +6,21 @@ import React, { useState } from "react";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "./ui/table";
 import {
   combineCurrencyAndPriceChangeData,
-  CurrrencyFormat,
 } from "@/lib/utils";
 import SearchInput from "./SearchInput";
 import { LoadingSpinner } from "./LoadingSpinner";
-import CoinLogo from "./CoinLogo";
 
 import TableCellPersentage from "./TableCellPersentage";
 import TableHeaderSort from "./TableHeaderSort";
 import ErrorComponent from "./ErrorComponent";
+import TableCellLatestPrice from "./TableCellLatestPrice";
+import TableCellCurrency from "./TableCellCurrency";
 
 export default function Tables() {
   const {
@@ -153,22 +152,8 @@ export default function Tables() {
                     index: any
                   ) => (
                     <TableRow key={index}>
-                      <TableCell className="font-medium" colSpan={2}>
-                        <div className="flex gap-6">
-                          <CoinLogo url={curr.logo} color={curr.color} />
-                          <div className="flex-col">
-                            <h1 className="text-lg font-bold">{curr.name}</h1>
-                            <span className="text-sm text-gray-700">
-                              {curr.currencySymbol}
-                            </span>
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <h1 className="text-lg font-bold">
-                          {CurrrencyFormat(curr.latestPrice)}
-                        </h1>
-                      </TableCell>
+                      <TableCellCurrency logo={curr.logo} name={curr.name} currencySymbol={curr.currencySymbol} color={curr.color} />
+                      <TableCellLatestPrice latestPrice={curr.latestPrice} />
                       <TableCellPersentage persentage={curr.day} />
                       <TableCellPersentage persentage={curr.week} />
                       <TableCellPersentage persentage={curr.month} />
